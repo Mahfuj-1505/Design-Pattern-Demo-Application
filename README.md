@@ -24,4 +24,38 @@ A desktop-based Point of Sale (POS) system built with **JavaFX**, **SQLite**, an
 ---
 
 ## 📂 Project Structure
+src/
+├── com.example
+│ ├── HelloApplication.java # Main launcher
+│ ├── controller/ # All JavaFX controllers
+│ ├── model/ # Java data models (Product, Order, etc.)
+│ ├── util/
+│ │ ├── DatabaseHelper.java # SQLite + JDBC logic
+│ │ ├── DatabaseSeeder.java # Creates and seeds the DB
+│ │ └── NavigationManager.java# Handles view transitions
+├── resources/
+│ └── com/example/
+│ ├── *.fxml # JavaFX view definitions
+│ └── *.css (if any)
+
+
+---
+
+## 💾 Requirements
+
+- Java 17+ (Java 21 or OpenJDK 24 recommended)
+- JavaFX SDK (use version **matching your runtime**)
+- SQLite JDBC driver (`org.xerial:sqlite-jdbc`)
+- JavaFX dependencies (`javafx-controls`, `javafx-fxml`, etc.)
+- Maven or IntelliJ configured build system
+
+---
+
+## 🚀 How to Run
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/javafx-pos-app.git
+cd javafx-pos-app
 
