@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.controller.ProductListController"
+            prefWidth="800" prefHeight="600">
+
+    <TableView fx:id="productTable" layoutX="20" layoutY="20" prefWidth="560" prefHeight="320">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
+            <TableColumn fx:id="nameColumn" text="Name" prefWidth="300"/>
+            <TableColumn fx:id="priceColumn" text="Price" prefWidth="160"/>
+        </columns>
+    </TableView>
+
+    <!-- New message label for error/success messages -->
+    <Label fx:id="messageLabel" layoutX="20" layoutY="350" prefWidth="560" textFill="red"/>
+
+</AnchorPane>

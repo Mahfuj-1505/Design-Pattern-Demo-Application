@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="520.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ControlPanelController">
+
+    <VBox layoutX="96.0" layoutY="123.0" spacing="15">
+        <Button onAction="#handleAddProduct" prefWidth="300" text="Add Product" />
+        <Button onAction="#handleProductList" prefWidth="300" text="View Product List" />
+        <Button onAction="#handleCustomerList" prefWidth="300" text="View Customer List" />
+        <Button onAction="#handleOrderList" prefWidth="300" text="View Order List" />
+    </VBox>
+
+</AnchorPane>

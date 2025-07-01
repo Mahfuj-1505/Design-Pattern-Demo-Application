@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="520.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.HomeController">
+
+    <children>
+        <AnchorPane prefHeight="80.0" prefWidth="600.0" style="-fx-background-color: #007bff;">
+            <children>
+                <Label layoutX="20.0" layoutY="25.0" text="Welcome to Your Dashboard" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+
+        <Button fx:id="viewProfileButton" layoutX="40.0" layoutY="150.0" onAction="#handleViewProfile" prefWidth="150.0" text="View Profile" />
+
+        <Button fx:id="viewProductsButton" layoutX="40.0" layoutY="196.0" onAction="#handleViewProducts" prefWidth="150.0" text="View Products" />
+
+        <Button fx:id="ordersButton" layoutX="40.0" layoutY="241.0" onAction="#handleOrders" prefWidth="150.0" text="My Orders" />
+
+        <Button fx:id="settingsButton" layoutX="40.0" layoutY="285.0" onAction="#handleSettings" prefWidth="150.0" text="Settings" />
+
+        <Button fx:id="logoutButton" layoutX="40.0" layoutY="334.0" onAction="#handleLogout" prefWidth="150.0" style="-fx-background-color: #dc3545;" text="Log Out" textFill="WHITE" />
+      <Button fx:id="controlPanelButton" layoutX="278.0" layoutY="150.0" onAction="#handleControlPanel" prefWidth="150.0" text="Control panel" />
+    </children>
+</AnchorPane>
