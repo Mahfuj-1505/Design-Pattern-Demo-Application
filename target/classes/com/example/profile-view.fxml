@@ -7,12 +7,25 @@
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.controller.ProfileViewController"
-            prefWidth="400" prefHeight="300">
-    <VBox spacing="10" layoutX="50" layoutY="50">
-        <Label text="User Profile" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
-        <Label fx:id="nameLabel" text="Name: " />
-        <Label fx:id="emailLabel" text="Email: " />
-        <Label fx:id="typeLabel" text="Type: " />
-        <Label fx:id="messageLabel" textFill="red"/>
+            prefWidth="650" prefHeight="520"
+            style="-fx-background-color: white; -fx-padding: 20;">
+
+    <VBox spacing="25" layoutX="150" layoutY="120" prefWidth="350" style="
+        -fx-background-color: #f9f9f9;
+        -fx-background-radius: 15;
+        -fx-border-radius: 15;
+        -fx-border-color: #ddd;
+        -fx-border-width: 1.5;
+        -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0.3, 0, 3);
+        -fx-padding: 30;
+    ">
+        <Label text="User Profile" style="-fx-font-size: 28px; -fx-font-weight: 600; -fx-text-fill: #333;"/>
+
+        <Label fx:id="nameLabel" text="Name: " style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+        <Label fx:id="emailLabel" text="Email: " style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+        <Label fx:id="typeLabel" text="Type: " style="-fx-font-size: 18px; -fx-text-fill: #555;"/>
+
+        <Label fx:id="messageLabel" textFill="red" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
     </VBox>
+
 </AnchorPane>
