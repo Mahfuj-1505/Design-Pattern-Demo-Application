@@ -56,6 +56,6 @@ src/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/javafx-pos-app.git
+git clone https://github.com/Mahfuj-1505/Design-Pattern-Demo-Application.git
 cd javafx-pos-app
 
