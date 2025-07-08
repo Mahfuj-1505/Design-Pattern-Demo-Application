@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("register-view.fxml"));
         stage.setTitle("User Registration");
-        scene = new Scene(root, 480, 520);
+        scene = new Scene(root, 520, 650);
         stage.setScene(scene);
         primaryStage = stage;
         stage.show();

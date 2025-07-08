@@ -1,16 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="520.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.ControlPanelController">
+<AnchorPane prefHeight="650.0" prefWidth="520.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.controller.ControlPanelController"
+            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #ffffff); -fx-padding: 20;">
 
-    <VBox layoutX="96.0" layoutY="123.0" spacing="15">
-        <Button onAction="#handleAddProduct" prefWidth="300" text="Add Product" />
-        <Button onAction="#handleProductList" prefWidth="300" text="View Product List" />
-        <Button onAction="#handleCustomerList" prefWidth="300" text="View Customer List" />
-        <Button onAction="#handleOrderList" prefWidth="300" text="View Order List" />
-    </VBox>
+    <children>
 
+        <!-- Header Bar -->
+        <AnchorPane layoutX="30.0" layoutY="40.0" prefHeight="60.0" prefWidth="460.0"
+                    style="-fx-background-color: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+                           -fx-background-radius: 18 18 0 0;">
+            <children>
+                <Label layoutX="30.0" layoutY="17.0" text="Admin Control Panel" textFill="white">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+
+        <!-- Main Card -->
+        <AnchorPane layoutX="30.0" layoutY="100.0" prefHeight="480.0" prefWidth="460.0"
+                    style="-fx-background-color: rgba(255, 255, 255, 0.95);
+                           -fx-background-radius: 0 0 18 18;
+                           -fx-border-radius: 0 0 18 18;
+                           -fx-border-color: #dee2e6;
+                           -fx-border-width: 1.5;
+                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0.5, 0, 4);">
+
+            <VBox layoutX="80.0" layoutY="60.0" spacing="25" prefWidth="300.0">
+
+                <Button fx:id="addProductButton" onAction="#handleAddProduct" text="➕ Add Product"
+                        prefWidth="300"
+                        style="-fx-background-color: linear-gradient(to right, #42a5f5, #1e88e5);
+                               -fx-text-fill: white; -fx-font-size: 15px;
+                               -fx-background-radius: 20; -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(66,165,245,0.4), 4, 0.5, 0, 2);"
+                        onMouseEntered="#hoverGlow" onMouseExited="#removeGlow" />
+
+                <Button fx:id="productListButton" onAction="#handleProductList" text="📦 View Product List"
+                        prefWidth="300"
+                        style="-fx-background-color: linear-gradient(to right, #66bb6a, #43a047);
+                               -fx-text-fill: white; -fx-font-size: 15px;
+                               -fx-background-radius: 20; -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(102,187,106,0.4), 4, 0.5, 0, 2);"
+                        onMouseEntered="#hoverGlow" onMouseExited="#removeGlow" />
+
+                <Button fx:id="customerListButton" onAction="#handleCustomerList" text="👥 View Customer List"
+                        prefWidth="300"
+                        style="-fx-background-color: linear-gradient(to right, #ffa726, #fb8c00);
+                               -fx-text-fill: white; -fx-font-size: 15px;
+                               -fx-background-radius: 20; -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(255,167,38,0.4), 4, 0.5, 0, 2);"
+                        onMouseEntered="#hoverGlow" onMouseExited="#removeGlow" />
+
+                <Button fx:id="orderListButton" onAction="#handleOrderList" text="🧾 View Order List"
+                        prefWidth="300"
+                        style="-fx-background-color: linear-gradient(to right, #ef5350, #e53935);
+                               -fx-text-fill: white; -fx-font-size: 15px;
+                               -fx-background-radius: 20; -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(239,83,80,0.4), 4, 0.5, 0, 2);"
+                        onMouseEntered="#hoverGlow" onMouseExited="#removeGlow" />
+            </VBox>
+        </AnchorPane>
+
+    </children>
 </AnchorPane>

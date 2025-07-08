@@ -1,21 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.AuthController">
+<AnchorPane prefHeight="400.0" prefWidth="520.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.controller.AuthController"
+            style="-fx-background-color: linear-gradient(to bottom, #fdfbfb, #ebedee); -fx-padding: 20;">
 
-    <TextField fx:id="emailField" alignment="CENTER" layoutX="83.0" layoutY="96.0" prefHeight="23.0" prefWidth="355.0" promptText="Enter username or email" />
+    <children>
 
-    <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="83.0" layoutY="166.0" prefHeight="23.0" prefWidth="355.0" promptText="Enter Password" />
+        <!-- Back Button -->
+        <Button text="Back" onAction="#handleBack" layoutX="10" layoutY="10"
+                style="-fx-background-color: #6c757d;
+                       -fx-text-fill: white;
+                       -fx-font-size: 13px;
+                       -fx-background-radius: 20;
+                       -fx-cursor: hand;" />
 
-    <Button text="Back" onAction="#handleBack" layoutX="10" layoutY="10"/>
+        <!-- Login Card -->
+        <AnchorPane layoutX="30.0" layoutY="60.0" prefHeight="300.0" prefWidth="460.0"
+                    style="-fx-background-color: rgba(255,255,255,0.9);
+                           -fx-background-radius: 18;
+                           -fx-border-radius: 18;
+                           -fx-border-color: #dee2e6;
+                           -fx-border-width: 1.5;
+                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 12, 0.5, 0, 4);">
+            <children>
 
-    <Button layoutX="160.0" layoutY="229.0" mnemonicParsing="false" onAction="#handleLoginButton" prefWidth="200.0" style="-fx-background-color: #007bff;" text="Log in" textFill="WHITE" />
-    <Button layoutX="161.0" layoutY="267.0" mnemonicParsing="false" onAction="#handleGoToHomePageButton" prefWidth="200.0" style="-fx-background-color: #007bff;" text="Go to home page" textFill="WHITE" />
-    <Label layoutX="83.0" layoutY="79.0" text="Username" />
-   <Label layoutX="83.0" layoutY="148.0" text="Password" />
+                <!-- Username -->
+                <Label layoutX="50.0" layoutY="40.0" text="Username"
+                       style="-fx-text-fill: #495057; -fx-font-size: 13px;" />
+                <TextField fx:id="emailField" layoutX="50.0" layoutY="60.0"
+                           prefHeight="36.0" prefWidth="360.0" promptText="Enter username or email"
+                           style="-fx-background-color: #f1f3f5;
+                                  -fx-background-radius: 10;
+                                  -fx-border-radius: 10;
+                                  -fx-border-color: #ced4da;
+                                  -fx-font-size: 13px;
+                                  -fx-padding: 0 12;" />
+
+                <!-- Password -->
+                <Label layoutX="50.0" layoutY="115.0" text="Password"
+                       style="-fx-text-fill: #495057; -fx-font-size: 13px;" />
+                <PasswordField fx:id="passwordField" layoutX="50.0" layoutY="135.0"
+                               prefHeight="36.0" prefWidth="360.0" promptText="Enter Password"
+                               style="-fx-background-color: #f1f3f5;
+                                      -fx-background-radius: 10;
+                                      -fx-border-radius: 10;
+                                      -fx-border-color: #ced4da;
+                                      -fx-font-size: 13px;
+                                      -fx-padding: 0 12;" />
+
+                <!-- Login Button -->
+                <Button layoutX="130.0" layoutY="200.0" mnemonicParsing="false"
+                        onAction="#handleLoginButton"
+                        prefWidth="200.0" prefHeight="40.0" text="Log in"
+                        style="-fx-background-color: linear-gradient(to right, #007bff, #0056b3);
+                               -fx-text-fill: white;
+                               -fx-font-size: 15px;
+                               -fx-background-radius: 20;
+                               -fx-cursor: hand;
+                               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.3, 0, 2);" />
+
+                <!-- Go to Home Page Button -->
+                <Button layoutX="130.0" layoutY="250.0" mnemonicParsing="false"
+                        onAction="#handleGoToHomePageButton"
+                        prefWidth="200.0" prefHeight="34.0" text="Go to home page"
+                        style="-fx-background-color: #6c757d;
+                               -fx-text-fill: white;
+                               -fx-font-size: 13px;
+                               -fx-background-radius: 20;
+                               -fx-cursor: hand;" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

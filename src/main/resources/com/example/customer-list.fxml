@@ -3,17 +3,46 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.controller.CustomerListController"
-            prefWidth="600" prefHeight="400">
+            prefWidth="650" prefHeight="520"
+            style="-fx-background-color: white; -fx-padding: 20;">
 
-    <TableView fx:id="customerTable" layoutX="20" layoutY="20" prefWidth="560" prefHeight="360">
-        <columns>
-            <TableColumn fx:id="idColumn" text="ID" prefWidth="100"/>
-            <TableColumn fx:id="nameColumn" text="Name" prefWidth="230"/>
-            <TableColumn fx:id="emailColumn" text="Email" prefWidth="230"/>
-        </columns>
-    </TableView>
+    <!-- Card-style container for the table -->
+    <AnchorPane layoutX="45" layoutY="40" prefWidth="560" prefHeight="420"
+                style="-fx-background-color: #fdfdfd;
+                       -fx-background-radius: 12;
+                       -fx-border-radius: 12;
+                       -fx-border-color: #dcdcdc;
+                       -fx-border-width: 1.5;
+                       -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0.3, 0, 2);">
+
+        <!-- Customer Table -->
+        <TableView fx:id="customerTable"
+                   layoutX="10" layoutY="10" prefWidth="540" prefHeight="360"
+                   style="-fx-background-color: white;
+                          -fx-border-color: transparent;
+                          -fx-table-cell-border-color: #e0e0e0;
+                          -fx-table-header-border-color: #c8c8c8;
+                          -fx-font-size: 14px;
+                          -fx-text-fill: #333;
+                          -fx-padding: 8;">
+
+            <columns>
+                <TableColumn fx:id="idColumn" text="ID" prefWidth="100"
+                             style="-fx-font-weight: bold;" />
+                <TableColumn fx:id="nameColumn" text="Name" prefWidth="220"
+                             style="-fx-font-weight: bold;" />
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="220"
+                             style="-fx-font-weight: bold;" />
+            </columns>
+        </TableView>
+
+        <!-- Optional message label -->
+        <Label fx:id="messageLabel" layoutX="10" layoutY="380" prefWidth="540"
+               style="-fx-text-fill: #dc3545; -fx-font-size: 14px; -fx-font-weight: bold;" />
+    </AnchorPane>
 </AnchorPane>
