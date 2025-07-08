@@ -51,11 +51,4 @@ src/
 
 ---
 
-## 🚀 How to Run
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Mahfuj-1505/Design-Pattern-Demo-Application.git
-cd Design-Pattern-Demo-Application
 
