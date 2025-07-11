@@ -45,9 +45,10 @@ public class DatabaseSeeder {
                     "CREATE TABLE order_items (id INTEGER PRIMARY KEY AUTOINCREMENT, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT NOT NULL, FOREIGN KEY (order_id) REFERENCES orders (id), FOREIGN KEY (product_id) REFERENCES products (id));");
 
             // Insert data into users (if still needed separately)
-            String samplePass = BCrypt.hashpw("qwer1234", BCrypt.gensalt());
+            String samplePass = BCrypt.hashpw("12", BCrypt.gensalt());
             statement.executeUpdate(String.format(
-                    "INSERT INTO users (id, name, email, type, password) VALUES (1, 'Admin One', 'admin1@example.com', 'admin', '%s'), (2, 'Employee One', 'emp1@example.com', 'employee', '%s');",
+                    "INSERT INTO users (id, name, email, type, password) VALUES (1, 'Admin One', 'admin1', 'admin', '12'), " +
+                            "(2, 'Employee One', 'employee1', 'employee', '12');",
                     samplePass, samplePass));
 
             // Insert data into customers

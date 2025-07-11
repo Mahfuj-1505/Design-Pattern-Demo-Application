@@ -15,9 +15,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("register-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login-view.fxml"));
         stage.setTitle("User Registration");
-        scene = new Scene(root, 520, 650);
+        scene = new Scene(root, 1920, 1080);
         stage.setScene(scene);
         primaryStage = stage;
         stage.show();

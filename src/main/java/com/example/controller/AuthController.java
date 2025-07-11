@@ -3,6 +3,7 @@ package com.example.controller;
 import com.example.HelloApplication;
 import com.example.util.DatabaseHelper;
 import com.example.util.NavigationManager;
+import com.example.util.Sceneloader;
 import com.example.util.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -28,30 +29,25 @@ public class AuthController {
 
     @FXML
     private void handleLoginButton(ActionEvent event) throws IOException {
-        String email = emailField.getText();
-        String password = passwordField.getText();
+        String email = emailField.getText().trim();     // Add .trim()
+        String password = passwordField.getText().trim();
 
-        Integer userId = DatabaseHelper.verifyUser(email, password);
-        System.out.println("User ID: " + userId); // Debug
+        String userType = DatabaseHelper.verifyUser(email, password);
+        System.out.println("User type: " + userType); // Debug
 
-        if (userId != null) {
+        if (userType != null) {
             // ✅ Set logged-in user in session
-            Session.setLoggedInUserId(userId);
+//            Session.setLoggedInUserId(userId);
+            String fxmlFileName = userType + "-dashboard";
+            Sceneloader.openScene(fxmlFileName, event, "Admin Dashboard");
 
-            HelloApplication.setRoot("home-view");
-            HelloApplication.setTitle("Home Page");
         } else {
             System.out.println("Invalid email or password.");
         }
     }
 
     @FXML
-    private void handleGoToHomePageButton(ActionEvent event) {
-        try {
-            HelloApplication.setRoot("home-view");
-            HelloApplication.setTitle("Home Page");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void handleGoToDashboardButton(ActionEvent event) {
+        Sceneloader.openScene("employee-dashboard", event, "employee Dashboard");
     }
 }
