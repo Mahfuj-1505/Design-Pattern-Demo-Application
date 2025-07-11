@@ -42,7 +42,7 @@
                               -fx-padding: 8 12;" />
 
             <Button text="Add Product" onAction="#handleAddProduct"
-                    style="-fx-background-color: linear-gradient(to right, #212529, #343a40);
+                    style="-fx-background-color: #2980b9;
                            -fx-text-fill: white;
                            -fx-font-size: 14px;
                            -fx-font-weight: bold;

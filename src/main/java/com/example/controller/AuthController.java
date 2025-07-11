@@ -48,6 +48,6 @@ public class AuthController {
 
     @FXML
     private void handleGoToDashboardButton(ActionEvent event) {
-        Sceneloader.openScene("employee-dashboard", event, "employee Dashboard");
+        Sceneloader.openScene("admin-dashboard", event, "employee Dashboard");
     }
 }
