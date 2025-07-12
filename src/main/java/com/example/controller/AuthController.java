@@ -39,7 +39,7 @@ public class AuthController {
             // ✅ Set logged-in user in session
 //            Session.setLoggedInUserId(userId);
             String fxmlFileName = userType + "-dashboard";
-            Sceneloader.openScene(fxmlFileName, event, "Admin Dashboard");
+            Sceneloader.openScene(fxmlFileName, event, userType.equals("admin") ? "Admin Dashboard" : "Employee Dashboard");
 
         } else {
             System.out.println("Invalid email or password.");
@@ -48,6 +48,6 @@ public class AuthController {
 
     @FXML
     private void handleGoToDashboardButton(ActionEvent event) {
-        Sceneloader.openScene("admin-dashboard", event, "employee Dashboard");
+        Sceneloader.openScene("admin-dashboard", event, "Admin Dashboard");
     }
 }
