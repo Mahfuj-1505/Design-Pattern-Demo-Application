@@ -23,6 +23,7 @@ public class DatabaseSeeder {
             statement.executeUpdate("DROP TABLE IF EXISTS products;");
             statement.executeUpdate("DROP TABLE IF EXISTS users;");
             statement.executeUpdate("DROP TABLE IF EXISTS customers;");
+            statement.executeUpdate("DROP TABLE IF EXISTS stock;");
 
             // Create customers table
             statement.executeUpdate(
@@ -44,6 +45,31 @@ public class DatabaseSeeder {
             statement.executeUpdate(
                     "CREATE TABLE order_items (id INTEGER PRIMARY KEY AUTOINCREMENT, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT NOT NULL, FOREIGN KEY (order_id) REFERENCES orders (id), FOREIGN KEY (product_id) REFERENCES products (id));");
 
+            // Create stock table to track inventory changes
+            statement.executeUpdate(
+                    "CREATE TABLE stock (" +
+                            "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                            "product_id INTEGER NOT NULL, " +
+                            "product_name VARCHAR(100) NOT NULL, " +
+                            "amount INTEGER NOT NULL, " +
+                            "type VARCHAR(20) CHECK(type IN ('restock', 'consumed')) NOT NULL, " +
+                            "date DATETIME DEFAULT (datetime('now', '+6 hours')), " +
+                            "FOREIGN KEY (product_id) REFERENCES products(id)" +
+                            ");"
+            );
+
+
+            // Initial stock entries (restock)
+            statement.executeUpdate(
+                    "INSERT INTO stock (product_id, product_name, amount, type) VALUES " +
+                            "(1, 'Product A', 10, 'restock'), " +
+                            "(2, 'Product B', 20, 'restock'), " +
+                            "(3, 'Product C', 15, 'restock'), " +
+                            "(4, 'Product D', 30, 'restock'), " +
+                            "(5, 'Product E', 5, 'restock');"
+            );
+
+
             // Insert data into users (if still needed separately)
             String samplePass = BCrypt.hashpw("12", BCrypt.gensalt());
             statement.executeUpdate(String.format(
@@ -53,7 +79,7 @@ public class DatabaseSeeder {
 
             // Insert data into customers
             statement.executeUpdate(
-                    "INSERT INTO customers (id, name, email) VALUES (1, 'John Doe', 'john@gmail.com'), (2, 'Jane Smith', 'jane@gmail.com');");
+                    "INSERT INTO customers (id, name, email) VALUES (1, 'John Doe', '012345'), (2, 'Jane Smith', '0123123');");
 
             // Insert data into products table
             statement.executeUpdate(

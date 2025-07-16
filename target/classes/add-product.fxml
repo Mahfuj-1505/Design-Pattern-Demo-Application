@@ -48,7 +48,9 @@
                            -fx-font-weight: bold;
                            -fx-background-radius: 20;
                            -fx-cursor: hand;
-                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0.3, 0, 2);" />
+                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0.3, 0, 2);"
+                            onMouseEntered="#hoverGlow" onMouseExited="#removeGlow"
+            />
 
             <Label fx:id="statusLabel"
                    style="-fx-font-size: 13px; -fx-text-fill: #dc3545; -fx-padding: 5 0 0 0;" />

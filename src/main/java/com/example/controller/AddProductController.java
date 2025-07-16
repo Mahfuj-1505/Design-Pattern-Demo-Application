@@ -43,4 +43,24 @@ public class AddProductController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void hoverGlow(javafx.scene.input.MouseEvent e) {
+        Button btn = (Button) e.getSource();
+        // Add drop shadow effect on hover
+        btn.setStyle(btn.getStyle() + "; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 10, 0.5, 0, 2);");
+        // Scale up button
+        btn.setScaleX(1.1);
+        btn.setScaleY(1.1);
+    }
+
+    @FXML
+    public void removeGlow(javafx.scene.input.MouseEvent e) {
+        Button btn = (Button) e.getSource();
+        // Remove drop shadow effect from style
+        btn.setStyle(btn.getStyle().replaceAll("-fx-effect: .*?;", ""));
+        // Reset scale
+        btn.setScaleX(1);
+        btn.setScaleY(1);
+    }
 }

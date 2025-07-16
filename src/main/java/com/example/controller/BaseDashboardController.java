@@ -86,9 +86,32 @@ public class BaseDashboardController {
     }
 
     public void handleSell(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sell-product.fxml"));
+            Node productList = loader.load();
+
+
+            contentArea.getChildren().setAll(productList);
+
+        } catch (IOException e) {
+            System.out.println("❌ Failed to load sell-product.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     public void handleViewStock(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stock-list.fxml"));
+            Node productList = loader.load();
+
+
+            contentArea.getChildren().setAll(productList);
+
+        } catch (IOException e) {
+            System.out.println("❌ Failed to load stock-list.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
@@ -110,7 +133,5 @@ public class BaseDashboardController {
         btn.setScaleX(1);
         btn.setScaleY(1);
     }
-
-
 
 }
