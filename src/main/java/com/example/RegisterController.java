@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class RegisterController {
 
@@ -23,7 +24,7 @@ public class RegisterController {
     private PasswordField ConfirmPasswordField;
 
     @FXML
-    void handleRegisterButton(ActionEvent event) {
+    void handleRegisterButton(ActionEvent event) throws SQLException {
         String firstName = firstnameTextField.getText();
         String lastName = lastnameTextField.getText();
         String email = usernameTextField.getText();
@@ -38,7 +39,7 @@ public class RegisterController {
         String fullName = firstName + " " + lastName;
         String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
-        boolean success = DatabaseHelper.insertUser(email, hashedPassword, fullName);
+        boolean success = DatabaseHelper.getInstance().insertUser(email, hashedPassword, fullName);
 
         if (success) {
             System.out.println("User registered!");

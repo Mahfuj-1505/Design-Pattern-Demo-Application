@@ -1,6 +1,7 @@
 // File: SellProductController.java
 package com.example.controller;
 
+import com.example.util.DatabaseHelper;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -47,7 +48,7 @@ public class SellProductController {
 
     private void connectToDB() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:pos.db");
+            connection = DatabaseHelper.getInstance().getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }

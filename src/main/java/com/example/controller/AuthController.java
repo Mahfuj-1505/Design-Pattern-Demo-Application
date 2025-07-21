@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class AuthController {
 
@@ -28,11 +29,11 @@ public class AuthController {
 
 
     @FXML
-    private void handleLoginButton(ActionEvent event) throws IOException {
+    private void handleLoginButton(ActionEvent event) throws IOException, SQLException {
         String email = emailField.getText().trim();     // Add .trim()
         String password = passwordField.getText().trim();
 
-        String userType = DatabaseHelper.verifyUser(email, password);
+        String userType = DatabaseHelper.getInstance().verifyUser(email, password);
         System.out.println("User type: " + userType); // Debug
 
         if (userType != null) {

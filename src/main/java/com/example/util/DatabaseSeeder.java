@@ -14,7 +14,7 @@ public class DatabaseSeeder {
 
         try (
                 // create a database connection
-                Connection connection = DriverManager.getConnection("jdbc:sqlite:pos.db");
+                Connection connection = DatabaseHelper.getInstance().getConnection();
                 Statement statement = connection.createStatement();) {
 
             // Drop existing tables

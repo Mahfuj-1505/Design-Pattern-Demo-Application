@@ -1,18 +1,53 @@
 package com.example.util;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.mindrot.jbcrypt.BCrypt;
 
 public class DatabaseHelper {
     private static final String DB_URL = "jdbc:sqlite:pos.db";
+    private static DatabaseHelper instance;
+    private Connection connection;
 
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
+    // Private constructor for Singleton
+    private DatabaseHelper() throws SQLException {
+        try {
+            this.connection = DriverManager.getConnection(DB_URL);
+            System.out.println("Database connection established.");
+        } catch (SQLException e) {
+            throw new SQLException("Failed to connect to database: " + e.getMessage());
+        }
     }
 
-    public static boolean insertUser(String email, String hashedPassword, String name) {
+    // Thread-safe Singleton instance getter
+    public static DatabaseHelper getInstance() throws SQLException {
+        if (instance == null) {
+            synchronized (DatabaseHelper.class) {
+                if (instance == null) {
+                    instance = new DatabaseHelper();
+                }
+            }
+        }
+        return instance;
+    }
+
+    // Get the connection
+    public Connection getConnection() {
+        return connection;
+    }
+
+    /**
+     * Inserts a new user into the database.
+     */
+    public boolean insertUser(String email, String plainPassword, String name) {
+        String hashedPassword = BCrypt.hashpw(plainPassword, BCrypt.gensalt());
         String sql = "INSERT INTO users (name, email, type, password) VALUES (?, ?, ?, ?)";
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, name); // full name
             stmt.setString(2, email);
             stmt.setString(3, "admin"); // default type
@@ -27,36 +62,32 @@ public class DatabaseHelper {
 
     /**
      * Verifies login credentials.
-     * @return user ID if login is successful, otherwise null.
+     * @return user type if login is successful, otherwise null.
      */
-    public static String verifyUser(String email, String plainPassword) {
+    public String verifyUser(String email, String plainPassword) {
         String sql = "SELECT id, password, type FROM users WHERE email = ?";
-        System.out.println("Verifying user: " + email); // Debug: Show email being checked
+        System.out.println("Verifying user: " + email);
 
-        try (Connection conn = getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, email);
-            System.out.println("Executing SQL: " + sql + " with email: " + email); // Debug: Show query and parameter
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 String storedHash = rs.getString("password");
-                String userType = rs.getString("type"); // Get type here
-                System.out.println("User found. Stored Hash: " + storedHash + ", Stored Type: " + userType); // Debug: Show retrieved data
+                String userType = rs.getString("type");
 
                 if (BCrypt.checkpw(plainPassword, storedHash)) {
-                    System.out.println("Password matched! Returning user type: " + userType); // Debug: Success
+                    System.out.println("Password matched. User type: " + userType);
                     return userType;
                 } else {
-                    System.out.println("Password did not match."); // Debug: Password mismatch
+                    System.out.println("Password did not match.");
                 }
             } else {
-                System.out.println("No user found with email: " + email); // Debug: No user found
+                System.out.println("No user found with email: " + email);
             }
         } catch (SQLException e) {
-            System.err.println("Login error (SQLException): " + e.getMessage()); // Use err for errors
-            e.printStackTrace(); // Print full stack trace for detailed error
+            System.err.println("Login error: " + e.getMessage());
         }
-        System.out.println("Login failed. Returning null."); // Debug: Failed login
-        return null;  // Login failed
+        return null;
     }
 }

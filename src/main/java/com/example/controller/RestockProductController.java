@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.util.DatabaseHelper;
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -34,7 +35,7 @@ public class RestockProductController {
 
     private void connectToDB() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:pos.db");
+            connection = DatabaseHelper.getInstance().getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -127,8 +128,8 @@ public class RestockProductController {
         } catch (NumberFormatException e) {
             statusLabel.setText("Invalid quantity.");
         } catch (SQLException e) {
+            statusLabel.setText("Database error: " + e.getMessage());
             e.printStackTrace();
-            statusLabel.setText("Database error.");
         }
     }
     @FXML
