@@ -1,12 +1,14 @@
-// File: SellProductController.java
 package com.example.controller;
 
 import com.example.util.DatabaseHelper;
+import com.example.memento.OrderCaretaker;
+import com.example.memento.OrderMemento;
+
 import javafx.collections.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.KeyEvent;
+
 import java.sql.*;
 import java.util.*;
 
@@ -27,11 +29,16 @@ public class SellProductController {
     private Connection connection;
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
 
+    private final OrderCaretaker caretaker = OrderCaretaker.getInstance();
+
     @FXML
     public void initialize() {
         connectToDB();
         loadProductNames();
         setupTable();
+
+        // Auto-restore last draft if exists
+        restoreDraft();
 
         productComboBox.setEditable(true);
         productComboBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> filterProductList(newVal));
@@ -42,8 +49,14 @@ public class SellProductController {
         phoneField.setOnAction(e -> updateCustomerName(phoneField.getValue()));
 
         quantityField.textProperty().addListener((obs, oldVal, newVal) -> updateTotalField());
-        addToOrderButton.setOnAction(e -> addItemToOrder());
+        addToOrderButton.setOnAction(e -> {
+            addItemToOrder();
+            saveDraft(); // auto-save after adding
+        });
         sellButton.setOnAction(e -> processOrder());
+
+        // Auto-save whenever orderItems change
+        orderItems.addListener((ListChangeListener<OrderItem>) change -> saveDraft());
     }
 
     private void connectToDB() {
@@ -254,6 +267,26 @@ public class SellProductController {
         phoneField.getItems().clear();
     }
 
+    // ----------- Draft Methods ---------------
+    private void saveDraft() {
+        OrderMemento memento = new OrderMemento(
+                new ArrayList<>(orderItems),
+                customerNameField.getText(),
+                phoneField.getValue()
+        );
+        caretaker.saveDraft(memento);
+    }
+
+    private void restoreDraft() {
+        OrderMemento memento = caretaker.getLatestDraft();
+        if (memento == null) return; // silently ignore if none
+        resetPage();
+        orderItems.addAll(memento.getOrderItems());
+        customerNameField.setText(memento.getCustomerName());
+        phoneField.setValue(memento.getCustomerPhone());
+    }
+
+    // --------------------- Inner Class ---------------------
     public static class OrderItem {
         private final String productName;
         private final int quantity;
