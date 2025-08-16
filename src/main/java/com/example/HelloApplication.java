@@ -8,12 +8,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 
+import com.example.backup.BackupManager; // ✅ added
+
 public class HelloApplication extends Application {
     private static Scene scene;
     private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws Exception {
+        //  start auto backup
+        BackupManager.getInstance().scheduleAutomaticBackup();
+
+//        to restore
+//        BackupManager.getInstance().restoreFrom("backups/backup_1692182400000.db");
 
         Parent root = FXMLLoader.load(getClass().getResource("/login-view.fxml"));
         stage.setTitle("User Registration");
