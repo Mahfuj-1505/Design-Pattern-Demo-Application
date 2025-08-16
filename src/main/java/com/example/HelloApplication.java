@@ -23,7 +23,7 @@ public class HelloApplication extends Application {
 //        BackupManager.getInstance().restoreFrom("backups/backup_1692182400000.db");
 
         Parent root = FXMLLoader.load(getClass().getResource("/login-view.fxml"));
-        stage.setTitle("User Registration");
+        stage.setTitle("User Login");
         scene = new Scene(root, 1920, 1080);
         stage.setScene(scene);
         primaryStage = stage;
