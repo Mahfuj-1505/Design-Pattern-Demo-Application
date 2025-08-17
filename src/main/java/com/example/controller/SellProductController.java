@@ -37,7 +37,6 @@ public class SellProductController {
         loadProductNames();
         setupTable();
 
-        // Auto-restore last draft if exists
         restoreDraft();
 
         productComboBox.setEditable(true);
@@ -51,11 +50,10 @@ public class SellProductController {
         quantityField.textProperty().addListener((obs, oldVal, newVal) -> updateTotalField());
         addToOrderButton.setOnAction(e -> {
             addItemToOrder();
-            saveDraft(); // auto-save after adding
+            saveDraft();
         });
         sellButton.setOnAction(e -> processOrder());
 
-        // Auto-save whenever orderItems change
         orderItems.addListener((ListChangeListener<OrderItem>) change -> saveDraft());
     }
 
@@ -267,7 +265,6 @@ public class SellProductController {
         phoneField.getItems().clear();
     }
 
-    // ----------- Draft Methods ---------------
     private void saveDraft() {
         OrderMemento memento = new OrderMemento(
                 new ArrayList<>(orderItems),
@@ -279,14 +276,13 @@ public class SellProductController {
 
     private void restoreDraft() {
         OrderMemento memento = caretaker.getLatestDraft();
-        if (memento == null) return; // silently ignore if none
+        if (memento == null) return;
         resetPage();
         orderItems.addAll(memento.getOrderItems());
         customerNameField.setText(memento.getCustomerName());
         phoneField.setValue(memento.getCustomerPhone());
     }
 
-    // --------------------- Inner Class ---------------------
     public static class OrderItem {
         private final String productName;
         private final int quantity;

@@ -9,7 +9,7 @@ public class OrderCaretaker {
 
     private static OrderCaretaker instance;
 
-    private OrderCaretaker() {} // private constructor (Singleton)
+    private OrderCaretaker() {}
 
     public static OrderCaretaker getInstance() {
         if (instance == null) {

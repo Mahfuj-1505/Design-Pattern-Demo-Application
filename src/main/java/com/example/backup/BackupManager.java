@@ -23,7 +23,6 @@ public class BackupManager {
     public void scheduleAutomaticBackup() {
         Command backupCommand = new BackupCommand(dbHelper);
 
-        // Run every 30 minutes
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {

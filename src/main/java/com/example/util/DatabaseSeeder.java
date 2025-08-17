@@ -13,7 +13,6 @@ public class DatabaseSeeder {
     public static void main(String[] args) {
 
         try (
-                // create a database connection
                 Connection connection = DatabaseHelper.getInstance().getConnection();
                 Statement statement = connection.createStatement();) {
 

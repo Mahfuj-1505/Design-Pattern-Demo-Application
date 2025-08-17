@@ -13,7 +13,6 @@ public class DatabaseHelper {
     private static DatabaseHelper instance;
     private Connection connection;
 
-    // Private constructor for Singleton
     private DatabaseHelper() throws SQLException {
         try {
             this.connection = DriverManager.getConnection(DB_URL);
@@ -23,7 +22,6 @@ public class DatabaseHelper {
         }
     }
 
-    // Thread-safe Singleton instance getter
     public static DatabaseHelper getInstance() throws SQLException {
         if (instance == null) {
             synchronized (DatabaseHelper.class) {
@@ -35,22 +33,19 @@ public class DatabaseHelper {
         return instance;
     }
 
-    // Get the connection
     public Connection getConnection() {
         return connection;
     }
 
-    /**
-     * Inserts a new user into the database.
-     */
+
     public boolean insertUser(String email, String plainPassword, String name) {
         String hashedPassword = BCrypt.hashpw(plainPassword, BCrypt.gensalt());
         String sql = "INSERT INTO users (name, email, type, password) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, name); // full name
+            stmt.setString(1, name);
             stmt.setString(2, email);
-            stmt.setString(3, "admin"); // default type
+            stmt.setString(3, "admin");
             stmt.setString(4, hashedPassword);
             stmt.executeUpdate();
             return true;
@@ -60,10 +55,7 @@ public class DatabaseHelper {
         }
     }
 
-    /**
-     * Verifies login credentials.
-     * @return user type if login is successful, otherwise null.
-     */
+
     public String verifyUser(String email, String plainPassword) {
         String sql = "SELECT id, password, type FROM users WHERE email = ?";
         System.out.println("Verifying user: " + email);

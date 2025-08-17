@@ -1,4 +1,3 @@
-// File: OrderMemento.java
 package com.example.memento;
 
 import com.example.controller.SellProductController.OrderItem;
@@ -11,7 +10,6 @@ public class OrderMemento {
     private final String customerPhone;
 
     public OrderMemento(List<OrderItem> items, String name, String phone) {
-        // deep copy to avoid modifying the snapshot later
         this.orderItems = new ArrayList<>(items);
         this.customerName = name;
         this.customerPhone = phone;
