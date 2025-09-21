@@ -1,4 +1,11 @@
 package com.example.controller;
+import com.example.controller.strategy.ReportActionStrategy;
+
+import com.example.controller.strategy.ReportActionStrategy;
+import com.example.controller.strategy.DownloadStrategy;
+import com.example.controller.strategy.PrintStrategy;
+import com.example.controller.strategy.EmailStrategy;
+
 
 import com.example.controller.bridge.*;
 import com.example.controller.strategy.*;
@@ -46,7 +53,6 @@ public class SalesReportController {
         // Select report type
         Report report;
         switch (reportType) {
-            case "Daily": report = new DailyReport(format); break;
             case "Weekly": report = new WeeklyReport(format); break;
             case "Monthly": report = new MonthlyReport(format); break;
             default: report = new DailyReport(format);
