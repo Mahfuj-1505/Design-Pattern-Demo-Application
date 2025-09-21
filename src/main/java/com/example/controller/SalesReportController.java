@@ -1,54 +1,27 @@
 package com.example.controller;
 
+import com.example.controller.bridge.*;
+import com.example.controller.strategy.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
-// ===== Strategy Pattern =====
-interface ReportActionStrategy {
-    String execute(String reportType);
-}
-
-class DownloadStrategy implements ReportActionStrategy {
-    @Override
-    public String execute(String reportType) {
-        return reportType + " Report Downloaded";
-    }
-}
-
-class PrintStrategy implements ReportActionStrategy {
-    @Override
-    public String execute(String reportType) {
-        return reportType + " Report Printed";
-    }
-}
-
-class EmailStrategy implements ReportActionStrategy {
-    @Override
-    public String execute(String reportType) {
-        return reportType + " Report Emailed";
-    }
-}
-
-// ===== Controller =====
 public class SalesReportController {
 
-    @FXML
-    private ChoiceBox<String> reportTypeChoice;
+    @FXML private ChoiceBox<String> reportTypeChoice;
+    @FXML private ChoiceBox<String> formatChoice;
+    @FXML private ChoiceBox<String> actionChoice;
+    @FXML private Label outputLabel;
 
-    @FXML
-    private ChoiceBox<String> actionChoice;
-
-    @FXML
-    private Label outputLabel;
-
-    private ReportActionStrategy strategy;
+    private ReportActionStrategy actionStrategy;
 
     @FXML
     public void initialize() {
-        // Populate choices
         reportTypeChoice.getItems().addAll("Daily", "Weekly", "Monthly");
         reportTypeChoice.setValue("Daily");
+
+        formatChoice.getItems().addAll("CSV", "PDF");
+        formatChoice.setValue("CSV");
 
         actionChoice.getItems().addAll("Download", "Print", "Email");
         actionChoice.setValue("Download");
@@ -57,25 +30,30 @@ public class SalesReportController {
     @FXML
     public void handleGenerateReport() {
         String reportType = reportTypeChoice.getValue();
-        String action = actionChoice.getValue();
+        String formatType = formatChoice.getValue();
+        String actionType = actionChoice.getValue();
 
-        // Select strategy
-        switch (action) {
-            case "Download":
-                strategy = new DownloadStrategy();
-                break;
-            case "Print":
-                strategy = new PrintStrategy();
-                break;
-            case "Email":
-                strategy = new EmailStrategy();
-                break;
+        // Select action strategy
+        switch (actionType) {
+            case "Download": actionStrategy = new DownloadStrategy(); break;
+            case "Print": actionStrategy = new PrintStrategy(); break;
+            case "Email": actionStrategy = new EmailStrategy(); break;
         }
 
-        // Execute strategy
-        if (strategy != null) {
-            String result = strategy.execute(reportType);
-            outputLabel.setText(result);
+        // Select format
+        ReportFormat format = formatType.equals("PDF") ? new PDFFormat() : new CSVFormat();
+
+        // Select report type
+        Report report;
+        switch (reportType) {
+            case "Daily": report = new DailyReport(format); break;
+            case "Weekly": report = new WeeklyReport(format); break;
+            case "Monthly": report = new MonthlyReport(format); break;
+            default: report = new DailyReport(format);
         }
+
+        // Generate report
+        String result = report.generate(reportType + "_Report", actionStrategy);
+        outputLabel.setText(result);
     }
 }

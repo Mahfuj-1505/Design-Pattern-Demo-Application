@@ -5,6 +5,8 @@ module com.example{
     requires java.sql;
     requires jbcrypt;
     requires java.desktop;
+    requires org.apache.pdfbox;
+    requires org.apache.commons.csv;
 
     // Allow JavaFX to use reflection to access your controller class
     opens com.example to javafx.fxml;
