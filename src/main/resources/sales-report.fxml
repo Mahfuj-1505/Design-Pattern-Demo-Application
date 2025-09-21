@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/13"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.controller.SalesReportController"
-            prefWidth="600.0" prefHeight="400.0">
+<AnchorPane prefHeight="734.0" prefWidth="975.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.SalesReportController">
 
-    <VBox spacing="15.0" alignment="CENTER" layoutX="50" layoutY="50" prefWidth="500" prefHeight="300">
-        <Label text="Sales Report Page" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <VBox alignment="CENTER" layoutX="50" layoutY="50" prefHeight="641.0" prefWidth="891.0" spacing="15.0">
+        <Label prefHeight="64.0" prefWidth="207.0" style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Sales Report Page">
+         <font>
+            <Font size="72.0" />
+         </font></Label>
 
         <!-- Report Type Selection -->
-        <HBox spacing="10" alignment="CENTER">
-            <Label text="Select Report Type:"/>
-            <ChoiceBox fx:id="reportTypeChoice" prefWidth="150.0"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="Select Report Type:">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+            <ChoiceBox fx:id="reportTypeChoice" prefHeight="43.0" prefWidth="192.0" />
         </HBox>
 
         <!-- Action Selection -->
-        <HBox spacing="10" alignment="CENTER">
-            <Label text="Select Action:"/>
-            <ChoiceBox fx:id="actionChoice" prefWidth="150.0"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="Select Action:">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+            <ChoiceBox fx:id="actionChoice" prefHeight="41.0" prefWidth="204.0" />
         </HBox>
 
         <!-- Format Selection -->
-        <HBox spacing="10" alignment="CENTER">
-            <Label text="Select Format:"/>
-            <ChoiceBox fx:id="formatChoice" prefWidth="150.0"/>
+        <HBox alignment="CENTER" spacing="10">
+            <Label text="Select Format:">
+            <font>
+               <Font size="18.0" />
+            </font></Label>
+            <ChoiceBox fx:id="formatChoice" prefHeight="39.0" prefWidth="201.0" />
         </HBox>
 
-        <Button text="Generate Report" onAction="#handleGenerateReport"/>
+        <Button onAction="#handleGenerateReport" prefHeight="57.0" prefWidth="210.0" style="-fx-background-color: #2eb774;" text="Generate Report" textFill="#000000fb">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
 
         <!-- Output -->
-        <Label fx:id="outputLabel" style="-fx-text-fill: green; -fx-font-size: 14px;"/>
+        <Label fx:id="outputLabel" style="-fx-text-fill: green; -fx-font-size: 14px;" />
     </VBox>
 
 </AnchorPane>
