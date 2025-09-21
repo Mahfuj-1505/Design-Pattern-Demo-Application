@@ -114,6 +114,21 @@ public class BaseDashboardController {
 
     }
 
+    public void handleSalesReport(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sales-report.fxml"));
+            Node productList = loader.load();
+
+
+            contentArea.getChildren().setAll(productList);
+
+        } catch (IOException e) {
+            System.out.println("❌ Failed to load sales-report.fxml: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+    }
+
     @FXML
     public void hoverGlow(javafx.scene.input.MouseEvent e) {
         Button btn = (Button) e.getSource();

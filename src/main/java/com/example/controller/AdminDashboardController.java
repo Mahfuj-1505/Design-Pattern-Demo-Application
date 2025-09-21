@@ -28,12 +28,12 @@ public class AdminDashboardController extends BaseDashboardController{
 
 
 
-    public void handleSalesReport(ActionEvent actionEvent) {
-    }
+//    public void handleSalesReport(ActionEvent actionEvent) {
+//    }
 
-    public void handleManageEmployees(ActionEvent actionEvent) {
-
-    }
+//    public void handleManageEmployees(ActionEvent actionEvent) {
+//
+//    }
 
 
 
