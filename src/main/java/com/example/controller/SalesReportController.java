@@ -6,27 +6,27 @@ import javafx.scene.control.Label;
 
 // ===== Strategy Pattern =====
 interface ReportActionStrategy {
-    String execute(String reportType);
+    String execute(String reportType, String format);
 }
 
 class DownloadStrategy implements ReportActionStrategy {
     @Override
-    public String execute(String reportType) {
-        return reportType + " Report Downloaded";
+    public String execute(String reportType, String format) {
+        return reportType + " Report Downloaded in " + format + " format";
     }
 }
 
 class PrintStrategy implements ReportActionStrategy {
     @Override
-    public String execute(String reportType) {
-        return reportType + " Report Printed";
+    public String execute(String reportType, String format) {
+        return reportType + " Report Printed in " + format + " format";
     }
 }
 
 class EmailStrategy implements ReportActionStrategy {
     @Override
-    public String execute(String reportType) {
-        return reportType + " Report Emailed";
+    public String execute(String reportType, String format) {
+        return reportType + " Report Emailed in " + format + " format";
     }
 }
 
@@ -38,6 +38,9 @@ public class SalesReportController {
 
     @FXML
     private ChoiceBox<String> actionChoice;
+
+    @FXML
+    private ChoiceBox<String> formatChoice;
 
     @FXML
     private Label outputLabel;
@@ -52,12 +55,16 @@ public class SalesReportController {
 
         actionChoice.getItems().addAll("Download", "Print", "Email");
         actionChoice.setValue("Download");
+
+        formatChoice.getItems().addAll("CSV", "PDF");
+        formatChoice.setValue("CSV");
     }
 
     @FXML
     public void handleGenerateReport() {
         String reportType = reportTypeChoice.getValue();
         String action = actionChoice.getValue();
+        String format = formatChoice.getValue();
 
         // Select strategy
         switch (action) {
@@ -74,7 +81,7 @@ public class SalesReportController {
 
         // Execute strategy
         if (strategy != null) {
-            String result = strategy.execute(reportType);
+            String result = strategy.execute(reportType, format);
             outputLabel.setText(result);
         }
     }
