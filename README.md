@@ -47,4 +47,12 @@ src/
 
 ---
 
+## 📚 Documentation
+
+For detailed project planning, design patterns, and architectural decisions, see:
+- [SPL 2 Plan Documentation](./docs/spl2-plan/README.md)
+- [GitHub Copilot Chat Reference](./docs/spl2-plan/copilot-chat-reference.md)
+
+---
+
 
